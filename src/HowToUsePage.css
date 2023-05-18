@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #020402; /* Change color of all text to #020402 */
+}
+
+.how-to-use-page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-image: url('./images/background_temporal.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #333;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 80px;
+    background: linear-gradient(90deg, #F7F0F5, #abc355, #6daf31);
+    box-shadow: 10px 10px 30px -5px rgba(0, 0, 0, 0.4); /* This will give a soft shadow */
+}
+
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+.logo-text {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.user-container {
+    display: flex;
+    align-items: center;
+}
+
+.user-container .user-info {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-bottom: -30px ;
+    padding-top: -30px ;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-radius: 5px;
+}
+
+.user-container img {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.content {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.how-to-use-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 140px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: auto;
+}
+
+.question-mark {
+    display: inline-block;
+    width: 46px; /* Adjust the size as needed */
+    height: auto;
+    vertical-align: middle; /* Align the icon to the middle of the text */
+    margin-right: 5px;
+}
+
+.ask-icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.question-mark {
+    margin-right: 10px;
+    width: 45px;  /*adjust as needed*/
+}
+
+
+.how-to-use-container .pond {
+    color: #6daf31;
+}
+
+.how-to-use-container h2 {
+    font-size: 36px;
+    color: #020402; /* Change color of heading to #020402 */
+}
+
+.how-to-use-container ol {
+    color: #666;
+}
+
+.how-to-use-container li {
+    margin-bottom: 10px;
+}

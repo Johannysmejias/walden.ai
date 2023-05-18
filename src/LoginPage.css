@@ -1,0 +1,132 @@
+.login-page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('./images/background_temporal.png'); /* Reemplaza por tu imagen de fondo */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 50px; /* Ajusta el tamaño según tus necesidades */
+    height: 50px;
+}
+
+.logo-text {
+    margin-left: 10px;
+}
+
+.sign-up-text {
+    color: #777; /* lightened color */
+    font-size: 12px; /* decreased font size */
+}
+
+.sign-up-text span {
+    color: #000;
+    cursor: pointer;
+}
+
+.login-box {
+    width: 300px;
+    border: none; /* Bordes removidos */
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Color de fondo blanco con transparencia */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-container {
+    background-color: #f0f0f0; /* light gray */
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.input-container .input-label {
+    position: absolute;
+    top: 2px; /* moved down */
+    left: 10px;
+    background-color: #f0f0f0;
+    padding: 0 5px;
+    font-weight: bold;
+    color: #777; /* lightened color */
+    font-size: 12px; /* decreased font size */
+}
+
+.input-container input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 12px; /* decreased font size */
+    color: #777; /* lightened color */
+    padding-top: 20px; /* added padding to push down */
+}
+
+.extras {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px; /* decreased font size */
+    color: #777; /* lightened color */
+}
+
+.extras input[type="checkbox"] {
+    color: #777; /* lightened color */
+}
+
+.login-button {
+    margin-top: 20px;
+    background-color: #696969; /* Dark gray */
+    color: #fff;
+    border: none; /* Border removed */
+}
+
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.social-icons > div {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.icon-container {
+    background-color: #f0f0f0; /* light gray */
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-container img {
+    width: 25px; /* Decreased icon size */
+    height: 25px;
+}
