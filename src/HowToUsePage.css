@@ -1,6 +1,6 @@
+/* HowToUsePage.css */
 body {
     font-family: Arial, sans-serif;
-    color: #020402; /* Change color of all text to #020402 */
 }
 
 .how-to-use-page {
@@ -8,11 +8,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     height: 100vh;
     background-image: url('./images/background_temporal.png');
     background-repeat: no-repeat;
     background-size: cover;
-    color: #333;
+    color: #020402;
 }
 
 .header {
@@ -27,9 +28,7 @@ body {
     box-sizing: border-box;
     height: 80px;
     background: linear-gradient(90deg, #F7F0F5, #abc355, #6daf31);
-    box-shadow: 10px 10px 30px -5px rgba(0, 0, 0, 0.4); /* This will give a soft shadow */
 }
-
 
 .logo-container {
     display: flex;
@@ -44,6 +43,7 @@ body {
 .logo-text {
     margin-left: 10px;
     font-weight: bold;
+    color: #333;
 }
 
 .user-container {
@@ -51,21 +51,23 @@ body {
     align-items: center;
 }
 
-.user-container .user-info {
+.login-info {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding-bottom: -30px ;
-    padding-top: -30px ;
-    padding-left: 9px;
-    padding-right: 9px;
-    border-radius: 5px;
 }
 
-.user-container img {
+.login-info p {
+    margin: 0;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.login-info img {
     width: 30px;
     height: 30px;
-    margin-left: 10px;
 }
 
 .content {
@@ -88,31 +90,20 @@ body {
 }
 
 .question-mark {
-    display: inline-block;
-    width: 46px; /* Adjust the size as needed */
-    height: auto;
-    vertical-align: middle; /* Align the icon to the middle of the text */
+    display: inline;
+    height: 36px;
     margin-right: 5px;
-}
-
-.ask-icon-container {
-    display: flex;
-    align-items: center;
-}
-
-.question-mark {
-    margin-right: 10px;
-    width: 45px;  /*adjust as needed*/
-}
-
-
-.how-to-use-container .pond {
-    color: #6daf31;
 }
 
 .how-to-use-container h2 {
     font-size: 36px;
-    color: #020402; /* Change color of heading to #020402 */
+    color: #020402;
+    display: flex;
+    align-items: center;
+}
+
+.pond-text {
+    color: #6daf31;
 }
 
 .how-to-use-container ol {
@@ -121,4 +112,12 @@ body {
 
 .how-to-use-container li {
     margin-bottom: 10px;
+}
+
+.footer {
+    background: #f2f2f2;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    color: #666;
 }

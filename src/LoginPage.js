@@ -28,7 +28,7 @@ function LoginPage() {
                 <form action="/login" method="post" className="login-form">
                     <div className="input-container">
                         <label htmlFor="email" className="input-label">Email</label>
-                        <input type="text" placeholder="example.email@gmail.com" name="email" id="email" required />
+                        <input type="te xt" placeholder="example.email@gmail.com" name="email" id="email" required />
                     </div>
                     <div className="input-container">
                         <label htmlFor="psw" className="input-label">Password</label>
