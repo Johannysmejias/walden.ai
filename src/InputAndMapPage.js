@@ -44,12 +44,13 @@ function InputAndMapPage() {
     }
 
     const handleSearchClick = () => {
-        axios.get('https://2d4cy9te88.execute-api.eu-west-1.amazonaws.com/api_test')
-            .then(response => {
+        axios
+            .get('https://2d4cy9te88.execute-api.eu-west-1.amazonaws.com/api_test')
+            .then((response) => {
                 console.log(response.data);
                 window.open('https://2d4cy9te88.execute-api.eu-west-1.amazonaws.com/api_test');
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
             });
     };
@@ -76,9 +77,65 @@ function InputAndMapPage() {
         // Code to handle logout
     }
 
+    const provinces = [
+        'Álava',
+        'Albacete',
+        'Alicante',
+        'Almería',
+        'Asturias',
+        'Ávila',
+        'Badajoz',
+        'Barcelona',
+        'Burgos',
+        'Cáceres',
+        'Cádiz',
+        'Cantabria',
+        'Castellón',
+        'Ciudad Real',
+        'Córdoba',
+        'Cuenca',
+        'Gerona (Girona)',
+        'Granada',
+        'Guadalajara',
+        'Guipúzcoa (Gipuzkoa)',
+        'Huelva',
+        'Huesca',
+        'Islas Baleares (Baleares)',
+        'Jaén',
+        'La Coruña (A Coruña)',
+        'La Rioja',
+        'Las Palmas',
+        'León',
+        'Lérida (Lleida)',
+        'Lugo',
+        'Madrid',
+        'Málaga',
+        'Murcia',
+        'Navarra',
+        'Orense (Ourense)',
+        'Palencia',
+        'Pontevedra',
+        'Salamanca',
+        'Santa Cruz de Tenerife',
+        'Segovia',
+        'Sevilla',
+        'Soria',
+        'Tarragona',
+        'Teruel',
+        'Toledo',
+        'Valencia',
+        'Valladolid',
+        'Vizcaya (Bizkaia)',
+        'Zamora',
+        'Zaragoza',
+    ];
+
     return (
         <div className="input-and-map-page">
-            <AppBar position="static" style={{ background: 'linear-gradient(to right, #F7F0F5, #D7F75B, #9BE564)' }}>
+            <AppBar
+                position="static"
+                style={{ background: 'linear-gradient(to right, #F7F0F5, #D7F75B, #9BE564)' }}
+            >
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -108,8 +165,13 @@ function InputAndMapPage() {
                         <MenuItem onClick={() => navigate('/how-to-use')}>How to</MenuItem>
                     </Menu>
                     <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-                        <img className="logo" src={logo} alt="logo" style={{ width: 50, height: 50, marginRight: 10 }} />
-                        <p className="logo-text" style={{ fontSize: 24, fontWeight: 'bold', color: "black" }}>
+                        <img
+                            className="logo"
+                            src={logo}
+                            alt="logo"
+                            style={{ width: 50, height: 50, marginRight: 10 }}
+                        />
+                        <p className="logo-text" style={{ fontSize: 24, fontWeight: 'bold', color: 'black' }}>
                             walden.ai - pond alpha
                         </p>
                     </Box>
@@ -217,7 +279,9 @@ function InputAndMapPage() {
                                     label="No"
                                 />
                                 {newLaw && (
-                                    <span>{newLaw === 'yes' ? 'Exclude areas affected by the new laws' : 'Include the areas affected by the new laws'}</span>
+                                    <span>
+                    {newLaw === 'yes' ? 'Exclude areas affected by the new laws' : 'Include the areas affected by the new laws'}
+                  </span>
                                 )}
                             </div>
                         </div>
@@ -230,13 +294,39 @@ function InputAndMapPage() {
                             Search
                         </Button>
                     </div>
-                    <div className="map-container">{/* Your map content here */}</div>
+                    <div className="map-container">
+                        <table style={{ width: '100%' }}>
+                            <thead>
+                            <tr>
+                                <th style={{ width: '50%' }}>Provinces</th>
+                                <th style={{ width: '50%' }}>ROI</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {provinces.slice(0, 10).map((province) => (
+                                <tr key={province}>
+                                    <td style={{ fontSize: '16px', padding: '10px' }}>{province}</td>
+                                    <td></td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div className="footer">
                 <p>Do you want to suggest more parameters?</p>
-                <Button variant="contained" onClick={handleSuggestionClick} color="primary"
-                        style={{ backgroundColor: 'grey', padding: '8px 16px', fontSize: '14px', borderRadius: '5px' }}>
+                <Button
+                    variant="contained"
+                    onClick={handleSuggestionClick}
+                    color="primary"
+                    style={{
+                        backgroundColor: 'grey',
+                        padding: '8px 16px',
+                        fontSize: '14px',
+                        borderRadius: '5px',
+                    }}
+                >
                     Suggest more parameters
                 </Button>
             </div>
