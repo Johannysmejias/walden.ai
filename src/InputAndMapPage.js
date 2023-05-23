@@ -1,4 +1,3 @@
-// InputAndMapPage.js
 import React, { useState } from 'react';
 import './InputAndMapPage.css';
 import { useNavigate } from 'react-router-dom';
@@ -36,11 +35,7 @@ function InputAndMapPage() {
     };
 
     const handleNewLawChange = (event) => {
-        if (event.target.checked) {
-            setNewLaw(event.target.value);
-        } else {
-            setNewLaw(null);
-        }
+        setNewLaw(event.target.value);
     };
 
     function handleSuggestionClick() {
@@ -102,7 +97,7 @@ function InputAndMapPage() {
                     </Menu>
                     <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
                         <img className="logo" src={logo} alt="logo" style={{ width: 50, height: 50, marginRight: 10 }} />
-                        <p className="logo-text" style={{ fontSize: 24, fontWeight: 'bold' }}>
+                        <p className="logo-text" style={{ fontSize: 24, fontWeight: 'bold', color: "black" }}>
                             walden.ai - pond alpha
                         </p>
                     </Box>
@@ -214,13 +209,22 @@ function InputAndMapPage() {
                                 )}
                             </div>
                         </div>
+                        <Button
+                            variant="contained"
+                            onClick={handleSuggestionClick}
+                            color="primary"
+                            className="search-button"
+                            style={{ backgroundColor: 'grey',marginLeft: "180px", marginTop: '10px' }}
+                        >
+                            Search
+                        </Button>
                     </div>
                     <div className="map-container">{/* Your map content here */}</div>
                 </div>
             </div>
             <div className="footer">
                 <p>Do you want to suggest more parameters?</p>
-                <Button variant="contained" onClick={handleSuggestionClick} style={{ backgroundColor: 'grey' }}>
+                <Button variant="contained" onClick={handleSuggestionClick} color="primary" style={{ backgroundColor: 'grey', padding: '8px 16px', fontSize: '14px', borderRadius: '5px' }}>
                     Suggest more parameters
                 </Button>
             </div>
