@@ -14,6 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 
 function InputAndMapPage() {
     let navigate = useNavigate();
@@ -41,6 +42,17 @@ function InputAndMapPage() {
     function handleSuggestionClick() {
         navigate('/suggest');
     }
+
+    const handleSearchClick = () => {
+        axios.get('https://2d4cy9te88.execute-api.eu-west-1.amazonaws.com/api_test')
+            .then(response => {
+                console.log(response.data);
+                window.open('https://2d4cy9te88.execute-api.eu-west-1.amazonaws.com/api_test');
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 
     const [anchorElMenu, setAnchorElMenu] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -211,10 +223,9 @@ function InputAndMapPage() {
                         </div>
                         <Button
                             variant="contained"
-                            onClick={handleSuggestionClick}
+                            onClick={handleSearchClick}
                             color="primary"
-                            className="search-button"
-                            style={{ backgroundColor: 'grey',marginLeft: "180px", marginTop: '10px' }}
+                            style={{ backgroundColor: 'grey', marginLeft: '180px', marginTop: '10px' }}
                         >
                             Search
                         </Button>
@@ -224,7 +235,8 @@ function InputAndMapPage() {
             </div>
             <div className="footer">
                 <p>Do you want to suggest more parameters?</p>
-                <Button variant="contained" onClick={handleSuggestionClick} color="primary" style={{ backgroundColor: 'grey', padding: '8px 16px', fontSize: '14px', borderRadius: '5px' }}>
+                <Button variant="contained" onClick={handleSuggestionClick} color="primary"
+                        style={{ backgroundColor: 'grey', padding: '8px 16px', fontSize: '14px', borderRadius: '5px' }}>
                     Suggest more parameters
                 </Button>
             </div>
