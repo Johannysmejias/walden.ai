@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './InputAndMapPage.css';
 import { useNavigate } from 'react-router-dom';
 import user_icon from './images/user_icon.png';
@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Box from '@mui/material/Box';
 import axios from 'axios';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 function InputAndMapPage() {
     let navigate = useNavigate();
@@ -23,6 +23,8 @@ function InputAndMapPage() {
     const [roiValue, setRoiValue] = useState([20, 50]);
     const [demandValue, setDemandValue] = useState([20, 50]);
     const [newLaw, setNewLaw] = useState(null);
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const handleCostChange = (event, newValue) => {
         setCostValue(newValue);
@@ -78,65 +80,26 @@ function InputAndMapPage() {
         // Code to handle logout
     }
 
-    const provinces = [
-        'Álava',
-        'Albacete',
-        'Alicante',
-        'Almería',
-        'Asturias',
-        'Ávila',
-        'Badajoz',
-        'Barcelona',
-        'Burgos',
-        'Cáceres',
-        'Cádiz',
-        'Cantabria',
-        'Castellón',
-        'Ciudad Real',
-        'Córdoba',
-        'Cuenca',
-        'Gerona (Girona)',
-        'Granada',
-        'Guadalajara',
-        'Guipúzcoa (Gipuzkoa)',
-        'Huelva',
-        'Huesca',
-        'Islas Baleares (Baleares)',
-        'Jaén',
-        'La Coruña (A Coruña)',
-        'La Rioja',
-        'Las Palmas',
-        'León',
-        'Lérida (Lleida)',
-        'Lugo',
-        'Madrid',
-        'Málaga',
-        'Murcia',
-        'Navarra',
-        'Orense (Ourense)',
-        'Palencia',
-        'Pontevedra',
-        'Salamanca',
-        'Santa Cruz de Tenerife',
-        'Segovia',
-        'Sevilla',
-        'Soria',
-        'Tarragona',
-        'Teruel',
-        'Toledo',
-        'Valencia',
-        'Valladolid',
-        'Vizcaya (Bizkaia)',
-        'Zamora',
-        'Zaragoza',
-    ];
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('https://json.link/EKZyRgQaTx.json');
+                setData(response.data.data);
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const columns: GridColDef[] = [
-        { field: 'province', headerName: 'Provinces', width: 200 },
+        { field: 'name', headerName: 'Provinces', width: 200 },
         { field: 'roi', headerName: 'ROI', width: 150 },
     ];
 
-    const rows = provinces.slice(0, 50).map((province) => ({ id: province, province, roi: '' }));
+    const rows = data.map((province) => ({ id: province.name, ...province }));
 
     return (
         <div className="input-and-map-page">
@@ -252,13 +215,8 @@ function InputAndMapPage() {
                         </Button>
                     </div>
                     <div className="map-container">
-                        <div style={{ height: 400, width: '100%' }}>
-                            <DataGrid
-                                rows={rows}
-                                columns={columns}
-                                pageSize={5}
-                                checkboxSelection
-                            />
+                        <div style={{ height: 625, width: '100%' }}>
+                            <DataGrid rows={rows} columns={columns} pageSize={5} />
                         </div>
                     </div>
                 </div>
@@ -272,7 +230,7 @@ function InputAndMapPage() {
                     style={{
                         backgroundColor: 'grey',
                         padding: '8px 16px',
-                        fontSize: '14px',
+                        fontSize: '15px',
                         borderRadius: '5px',
                     }}
                 >
