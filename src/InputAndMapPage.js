@@ -15,6 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Box from '@mui/material/Box';
 import axios from 'axios';
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 function InputAndMapPage() {
     let navigate = useNavigate();
@@ -130,21 +131,18 @@ function InputAndMapPage() {
         'Zaragoza',
     ];
 
+    const columns: GridColDef[] = [
+        { field: 'province', headerName: 'Provinces', width: 200 },
+        { field: 'roi', headerName: 'ROI', width: 150 },
+    ];
+
+    const rows = provinces.slice(0, 50).map((province) => ({ id: province, province, roi: '' }));
+
     return (
         <div className="input-and-map-page">
-            <AppBar
-                position="static"
-                style={{ background: 'linear-gradient(to right, #F7F0F5, #D7F75B, #9BE564)' }}
-            >
+            <AppBar position="static" style={{ background: 'linear-gradient(to right, #F7F0F5, #D7F75B, #9BE564)' }}>
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2, color: 'black' }}
-                        onClick={handleMenu}
-                    >
+                    <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2, color: 'black' }} onClick={handleMenu}>
                         <MenuIcon />
                     </IconButton>
                     <Menu
@@ -165,12 +163,7 @@ function InputAndMapPage() {
                         <MenuItem onClick={() => navigate('/how-to-use')}>How to</MenuItem>
                     </Menu>
                     <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-                        <img
-                            className="logo"
-                            src={logo}
-                            alt="logo"
-                            style={{ width: 50, height: 50, marginRight: 10 }}
-                        />
+                        <img className="logo" src={logo} alt="logo" style={{ width: 50, height: 50, marginRight: 10 }} />
                         <p className="logo-text" style={{ fontSize: 24, fontWeight: 'bold', color: 'black' }}>
                             walden.ai - pond alpha
                         </p>
@@ -214,13 +207,7 @@ function InputAndMapPage() {
                             <h3>Cost of house purchased</h3>
                             <p>Introduce the range price at which you like to purchase your investment property</p>
                             <div className="slider-container">
-                                <Slider
-                                    value={costValue}
-                                    onChange={handleCostChange}
-                                    aria-labelledby="range-slider"
-                                    style={{ color: 'grey' }}
-                                    minDistance={10}
-                                />
+                                <Slider value={costValue} onChange={handleCostChange} aria-labelledby="range-slider" style={{ color: 'grey' }} minDistance={10} />
                                 <span>€ {costValue[0]} - {costValue[1]}</span>
                             </div>
                         </div>
@@ -228,13 +215,7 @@ function InputAndMapPage() {
                             <h3>Expected ROI</h3>
                             <p>Select the expected ROI for your investment</p>
                             <div className="slider-container">
-                                <Slider
-                                    value={roiValue}
-                                    onChange={handleRoiChange}
-                                    aria-labelledby="range-slider"
-                                    style={{ color: 'grey' }}
-                                    minDistance={10}
-                                />
+                                <Slider value={roiValue} onChange={handleRoiChange} aria-labelledby="range-slider" style={{ color: 'grey' }} minDistance={10} />
                                 <span>% {roiValue[0]} - {roiValue[1]}</span>
                             </div>
                         </div>
@@ -242,13 +223,7 @@ function InputAndMapPage() {
                             <h3>Expected demand</h3>
                             <p>In how many weeks do you want to rent your flat?</p>
                             <div className="slider-container">
-                                <Slider
-                                    value={demandValue}
-                                    onChange={handleDemandChange}
-                                    aria-labelledby="range-slider"
-                                    style={{ color: 'grey' }}
-                                    minDistance={10}
-                                />
+                                <Slider value={demandValue} onChange={handleDemandChange} aria-labelledby="range-slider" style={{ color: 'grey' }} minDistance={10} />
                                 <span>Weeks {demandValue[0]} - {demandValue[1]}</span>
                             </div>
                         </div>
@@ -257,32 +232,14 @@ function InputAndMapPage() {
                             <p>Do you want to exclude areas affected by new law?</p>
                             <div className="checkbox-container">
                                 <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            checked={newLaw === 'yes'}
-                                            onChange={handleNewLawChange}
-                                            value="yes"
-                                            color="primary"
-                                        />
-                                    }
+                                    control={<Checkbox checked={newLaw === 'yes'} onChange={handleNewLawChange} value="yes" color="primary" />}
                                     label="Yes"
                                 />
                                 <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            checked={newLaw === 'no'}
-                                            onChange={handleNewLawChange}
-                                            value="no"
-                                            color="primary"
-                                        />
-                                    }
+                                    control={<Checkbox checked={newLaw === 'no'} onChange={handleNewLawChange} value="no" color="primary" />}
                                     label="No"
                                 />
-                                {newLaw && (
-                                    <span>
-                    {newLaw === 'yes' ? 'Exclude areas affected by the new laws' : 'Include the areas affected by the new laws'}
-                  </span>
-                                )}
+                                {newLaw && <span>{newLaw === 'yes' ? 'Exclude areas affected by the new laws' : 'Include the areas affected by the new laws'}</span>}
                             </div>
                         </div>
                         <Button
@@ -295,22 +252,14 @@ function InputAndMapPage() {
                         </Button>
                     </div>
                     <div className="map-container">
-                        <table style={{ width: '100%' }}>
-                            <thead>
-                            <tr>
-                                <th style={{ width: '50%' }}>Provinces</th>
-                                <th style={{ width: '50%' }}>ROI</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {provinces.slice(0, 10).map((province) => (
-                                <tr key={province}>
-                                    <td style={{ fontSize: '16px', padding: '10px' }}>{province}</td>
-                                    <td></td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
+                        <div style={{ height: 400, width: '100%' }}>
+                            <DataGrid
+                                rows={rows}
+                                columns={columns}
+                                pageSize={5}
+                                checkboxSelection
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
